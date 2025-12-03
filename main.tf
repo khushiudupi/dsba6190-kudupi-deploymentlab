@@ -55,11 +55,10 @@ resource "azurerm_mssql_server" "sql" {
   administrator_login          = "4dm1n157r470r"
   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
 }
-resource 
-"azurerm_mssql_virtual_network_rule" "vnetrule" {
-  name   = "sql-vnet-rule"
-  server_id= azurerm_mssql_server.sql.id
-  subnet_id= azurerm_subnet.subnet.id
+resource "azurerm_mssql_virtual_network_rule" "vnetrule" {
+  name      = "sql-vnet-rule"
+  server_id = azurerm_mssql_server.sql.id
+  subnet_id = azurerm_subnet.subnet.id
 }
 resource "azurerm_mssql_database" "db" {
   name         = "db-${var.class_name}-${var.student_name}-${var.environment}-${var.location}-${random_integer.deployment_id_suffix.result}"
